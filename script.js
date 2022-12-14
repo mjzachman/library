@@ -14,10 +14,10 @@ function addBookToLibrary(){
     // const userAuthor = "mr polar bear";
     const userBook = new Book(userTitle, userAuthor);
     myLibrary.push(userBook);
-    console.log(myLibrary);
+    
 };
 
 const addBookButton = document.getElementById('#submit');
-console.log(addBookButton);
+
 addBookButton.addEventListener("click", addBookToLibrary());
 
