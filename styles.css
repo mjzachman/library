@@ -1,5 +1,5 @@
 body {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   background-color: gray;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@ header {
   display: flex;
   justify-content: flex-start;
   align-content: flex-start;
-  
+
   padding: 20px;
   border: solid darkgreen 3px;
   border-radius: 5%;
@@ -53,50 +53,47 @@ header {
   justify-content: flex-start;
 }
 
-.title{
+.title {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
 }
 
-.author{
+.author {
   font-size: 1.1rem;
   font-style: italic;
   font-weight: normal;
   margin: 0;
 }
 
-.pages{
+.pages {
   font-size: 0.8rem;
   align-self: flex-end;
 }
 
-.buttons{
+.buttons {
   display: flex;
   justify-content: space-around;
 }
 
-.read{
+.read {
   background-color: lightgreen;
   color: darkgreen;
   border: solid darkgreen 1px;
-  
 }
 
-.unread{
+.unread {
   background-color: lightcoral;
   color: darkred;
   border: solid darkred 1px;
-  
 }
 
-.status{
+.status {
   border-radius: 10%;
   flex-basis: 120px;
-  
 }
 
-.remove{
+.remove {
   background-color: lightcoral;
   color: darkred;
   width: 25px;
@@ -105,7 +102,7 @@ header {
   border-radius: 50%;
 }
 
-fieldset{
+fieldset {
   background-color: beige;
   border: solid darkgreen 3px;
   border-radius: 5%;
