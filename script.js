@@ -14,6 +14,8 @@ function Book(title, author, pages, read) {
   }
 }
 
+
+
 function addNewCard(book) {
   const display = document.querySelector('#display');
   const card = document.createElement('div');
@@ -45,11 +47,19 @@ function addNewCard(book) {
     readBtn.classList.add('unread');
   }
 
+  removeBtn.addEventListener('click', () => {
+    console.log('remove');
+  })
+
+  readBtn.addEventListener('click', () => {
+    console.log('status');
+  });
+
+  buttons.appendChild(removeBtn);
+  buttons.appendChild(readBtn);
   card.appendChild(cardTitle);
   card.appendChild(cardAuthor);
   card.appendChild(cardPages);
-  buttons.appendChild(removeBtn);
-  buttons.appendChild(readBtn);
   card.appendChild(buttons);
   display.appendChild(card);
 }
@@ -62,18 +72,21 @@ function addBookToLibrary(title, author, pages, read) {
 
 function validateForm(event) {
   event.preventDefault();
+
+  // code to check if all inputs are filled out, display error messages
+
   const form = document.querySelector('form');
-  const userTitle = document.querySelector('#title');
-  const userAuthor = document.querySelector('#author');
-  const userPages = document.querySelector('#pages');
-  let userRead = document.querySelector('input[name="read"]:checked');
-  if(userRead.value === "yes"){
+  const userTitle = document.querySelector('#title').value;
+  const userAuthor = document.querySelector('#author').value;
+  const userPages = document.querySelector('#pages').value;
+  let userRead = document.querySelector('input[name="read"]:checked').value;
+  if(userRead === "yes"){
     userRead = true;
   }else{
     userRead = false;
   }
 
-  addBookToLibrary(userTitle.value, userAuthor.value, userPages.value, userRead);
+  addBookToLibrary(userTitle, userAuthor, userPages, userRead);
   form.reset();
 }
 
