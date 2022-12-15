@@ -25,7 +25,6 @@ function addBookToLibrary(title, author, pages, read) {
   const userBook = new Book(title, author, pages, read);
   myLibrary.push(userBook);
   addNewCard();
-  console.log(userBook.info());
 }
 
 function validateForm(event) {
@@ -35,7 +34,6 @@ function validateForm(event) {
   const userAuthor = document.querySelector('#author');
   const userPages = document.querySelector('#pages');
   const userRead = document.querySelector('input[name="read"]:checked');
-  console.log(`your title was ${userTitle.value}`);
   addBookToLibrary(userTitle.value, userAuthor.value, userPages.value, userRead.value);
   form.reset();
 }
