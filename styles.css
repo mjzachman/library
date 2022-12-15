@@ -71,6 +71,40 @@ header {
   align-self: flex-end;
 }
 
+.buttons{
+  display: flex;
+  justify-content: space-around;
+}
+
+.read{
+  background-color: lightgreen;
+  color: darkgreen;
+  border: solid darkgreen 1px;
+  
+}
+
+.unread{
+  background-color: lightcoral;
+  color: darkred;
+  border: solid darkred 1px;
+  
+}
+
+.status{
+  border-radius: 10%;
+  flex-basis: 120px;
+  
+}
+
+.remove{
+  background-color: lightcoral;
+  color: darkred;
+  width: 25px;
+  height: 25px;
+  border: solid darkred 1px;
+  border-radius: 50%;
+}
+
 fieldset{
   background-color: beige;
   border: solid darkgreen 3px;

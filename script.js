@@ -1,19 +1,5 @@
 
-const myLibrary = [{
-  title: 'penguins',
-  author:'mr polar bear',
-  pages: '980',
-  read: 'yes'
-
-},
-{
-  title: 'donuts',
-  author:'the police man',
-  pages: '2',
-  read: 'no'
-}];
-
-
+const myLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -23,28 +9,49 @@ function Book(title, author, pages, read) {
   this.info = function info() {
     return `${title} by ${author}, ${pages} pages long. (${read})`;
   };
+  this.toggle = function toggle() {
+    this.read = !this.read;
+  }
 }
 
 function addNewCard(book) {
-  const content = document.querySelector('#display');
+  const display = document.querySelector('#display');
   const card = document.createElement('div');
   const cardTitle = document.createElement('p');
   const cardAuthor = document.createElement('p');
   const cardPages = document.createElement('p');
+  const buttons = document.createElement('div');
+  const removeBtn = document.createElement('button');
+  const readBtn = document.createElement('button');
   
   cardTitle.textContent = book.title;
   cardAuthor.textContent = book.author;
-  cardPages.textContent = book.pages;
+  cardPages.textContent = `${book.pages} pp.`;
+  removeBtn.textContent = 'X';
   
   card.classList.add('card');
   cardTitle.classList.add('title');
   cardAuthor.classList.add('author');
   cardPages.classList.add('pages');
+  buttons.classList.add('buttons');
+  removeBtn.classList.add('remove');
+  readBtn.classList.add('status');
+
+  if(book.read){
+    readBtn.textContent = "I read this!";
+    readBtn.classList.add('read');
+  }else{
+    readBtn.textContent = "Haven't read yet";
+    readBtn.classList.add('unread');
+  }
 
   card.appendChild(cardTitle);
   card.appendChild(cardAuthor);
   card.appendChild(cardPages);
-  content.appendChild(card);
+  buttons.appendChild(removeBtn);
+  buttons.appendChild(readBtn);
+  card.appendChild(buttons);
+  display.appendChild(card);
 }
 
 function addBookToLibrary(title, author, pages, read) {
@@ -59,8 +66,14 @@ function validateForm(event) {
   const userTitle = document.querySelector('#title');
   const userAuthor = document.querySelector('#author');
   const userPages = document.querySelector('#pages');
-  const userRead = document.querySelector('input[name="read"]:checked');
-  addBookToLibrary(userTitle.value, userAuthor.value, userPages.value, userRead.value);
+  let userRead = document.querySelector('input[name="read"]:checked');
+  if(userRead.value === "yes"){
+    userRead = true;
+  }else{
+    userRead = false;
+  }
+
+  addBookToLibrary(userTitle.value, userAuthor.value, userPages.value, userRead);
   form.reset();
 }
 
@@ -68,7 +81,6 @@ const addBookBtn = document.querySelector("#addBookBtn");
 addBookBtn.addEventListener("click", (event) => {
   validateForm(event);
 });
- 
 
-addNewCard(myLibrary[0]);
-addNewCard(myLibrary[1]);
+addBookToLibrary('penguins', 'mr polar bear', '980', true);
+addBookToLibrary('donuts', 'the police man', '2', false);
