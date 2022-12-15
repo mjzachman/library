@@ -31,7 +31,7 @@ header {
   display: flex;
   justify-content: flex-start;
   align-content: flex-start;
-  gap: 20px;
+  
   padding: 20px;
   border: solid darkgreen 3px;
   border-radius: 5%;
@@ -41,12 +41,34 @@ header {
 
 .card {
   height: 110px;
-  width: 160px;
+  width: 320px;
   background-color: white;
   padding: 10px;
+  margin: 0px 20px 20px 20px;
   border: solid darkgreen 2px;
   border-radius: 10%;
   box-shadow: 10px 5px 5px darkgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.title{
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.author{
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: normal;
+  margin: 0;
+}
+
+.pages{
+  font-size: 0.8rem;
+  align-self: flex-end;
 }
 
 fieldset{

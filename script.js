@@ -1,8 +1,19 @@
 
-// Things I need
-const myLibrary = [];
-const content = document.querySelector("#display");
-const addBookBtn = document.querySelector("#addBookBtn");
+const myLibrary = [{
+  title: 'penguins',
+  author:'mr polar bear',
+  pages: '980',
+  read: 'yes'
+
+},
+{
+  title: 'donuts',
+  author:'the police man',
+  pages: '2',
+  read: 'no'
+}];
+
+
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -14,17 +25,32 @@ function Book(title, author, pages, read) {
   };
 }
 
-function addNewCard() {
-  const card = document.createElement("div");
-  card.classList.add("card");
-  card.textContent = myLibrary[myLibrary.length-1].info();
+function addNewCard(book) {
+  const content = document.querySelector('#display');
+  const card = document.createElement('div');
+  const cardTitle = document.createElement('p');
+  const cardAuthor = document.createElement('p');
+  const cardPages = document.createElement('p');
+  
+  cardTitle.textContent = book.title;
+  cardAuthor.textContent = book.author;
+  cardPages.textContent = book.pages;
+  
+  card.classList.add('card');
+  cardTitle.classList.add('title');
+  cardAuthor.classList.add('author');
+  cardPages.classList.add('pages');
+
+  card.appendChild(cardTitle);
+  card.appendChild(cardAuthor);
+  card.appendChild(cardPages);
   content.appendChild(card);
 }
 
 function addBookToLibrary(title, author, pages, read) {
   const userBook = new Book(title, author, pages, read);
   myLibrary.push(userBook);
-  addNewCard();
+  addNewCard(userBook);
 }
 
 function validateForm(event) {
@@ -38,9 +64,11 @@ function validateForm(event) {
   form.reset();
 }
 
-
+const addBookBtn = document.querySelector("#addBookBtn");
 addBookBtn.addEventListener("click", (event) => {
   validateForm(event);
-  console.log('click!');
 });
  
+
+addNewCard(myLibrary[0]);
+addNewCard(myLibrary[1]);
