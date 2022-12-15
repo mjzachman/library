@@ -1,4 +1,8 @@
+
+// Things I need
 const myLibrary = [];
+const content = document.querySelector("#display");
+const addBookBtn = document.querySelector("#addBookBtn");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -10,26 +14,35 @@ function Book(title, author, pages, read) {
   };
 }
 
-const content = document.querySelector("#display");
-
 function addNewCard() {
   const card = document.createElement("div");
   card.classList.add("card");
-  card.textContent = myLibrary[0].info();
+  card.textContent = myLibrary[myLibrary.length-1].info();
   content.appendChild(card);
 }
 
-function addBookToLibrary() {
-  const userTitle = prompt("Enter Book Title:");
-  const userAuthor = prompt("Enter Book Author:");
-  const userPages = prompt("Enter Book Pages");
-  const userRead = prompt("Have you read it?");
-  const userBook = new Book(userTitle, userAuthor, userPages, userRead);
-  myLibrary.unshift(userBook);
+function addBookToLibrary(title, author, pages, read) {
+  const userBook = new Book(title, author, pages, read);
+  myLibrary.push(userBook);
   addNewCard();
+  console.log(userBook.info());
 }
-const addBookBtn = document.querySelector("#addBookBtn");
 
-addBookBtn.addEventListener("click", () => {
-  addBookToLibrary();
+function validateForm(event) {
+  event.preventDefault();
+  const form = document.querySelector('form');
+  const userTitle = document.querySelector('#title');
+  const userAuthor = document.querySelector('#author');
+  const userPages = document.querySelector('#pages');
+  const userRead = document.querySelector('input[name="read"]:checked');
+  console.log(`your title was ${userTitle.value}`);
+  addBookToLibrary(userTitle.value, userAuthor.value, userPages.value, userRead.value);
+  form.reset();
+}
+
+
+addBookBtn.addEventListener("click", (event) => {
+  validateForm(event);
+  console.log('click!');
 });
+ 
