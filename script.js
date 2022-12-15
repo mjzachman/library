@@ -14,9 +14,16 @@ function Book(title, author, pages, read) {
   }
 }
 
+function addBookToLibrary(title, author, pages, read) {
+  const userBook = new Book(title, author, pages, read);
+  myLibrary.push(userBook);
+}
 
+function removeBookFromLibrary(index){
+  myLibrary.splice(index, 1);
+}
 
-function addNewCard(book) {
+function addNewCard(book, index) {
   const display = document.querySelector('#display');
   const card = document.createElement('div');
   const cardTitle = document.createElement('p');
@@ -39,6 +46,8 @@ function addNewCard(book) {
   removeBtn.classList.add('remove');
   readBtn.classList.add('status');
 
+  removeBtn.setAttribute('data-index', index);
+
   if(book.read){
     readBtn.textContent = "I read this!";
     readBtn.classList.add('read');
@@ -47,14 +56,10 @@ function addNewCard(book) {
     readBtn.classList.add('unread');
   }
 
-  removeBtn.addEventListener('click', () => {
-    console.log('remove');
-  })
-
   readBtn.addEventListener('click', () => {
     console.log('status');
   });
-
+  
   buttons.appendChild(removeBtn);
   buttons.appendChild(readBtn);
   card.appendChild(cardTitle);
@@ -64,10 +69,25 @@ function addNewCard(book) {
   display.appendChild(card);
 }
 
-function addBookToLibrary(title, author, pages, read) {
-  const userBook = new Book(title, author, pages, read);
-  myLibrary.push(userBook);
-  addNewCard(userBook);
+function displayLibrary(){
+  const display = document.querySelector('#display');
+  while (display.firstChild){
+    display.removeChild(display.firstChild);
+  }
+  for (let i = 0; i < myLibrary.length; i += 1){
+    addNewCard(myLibrary[i], i);
+  }
+
+  // add event listeners here
+  const removeBtns = document.querySelectorAll('.remove');
+  
+  removeBtns.forEach((button) => {
+    button.addEventListener('click', () => {
+      removeBookFromLibrary(button.getAttribute('data-index'));
+      displayLibrary();
+  });
+  });
+    
 }
 
 function validateForm(event) {
@@ -87,6 +107,7 @@ function validateForm(event) {
   }
 
   addBookToLibrary(userTitle, userAuthor, userPages, userRead);
+  displayLibrary();
   form.reset();
 }
 
@@ -94,6 +115,3 @@ const addBookBtn = document.querySelector("#addBookBtn");
 addBookBtn.addEventListener("click", (event) => {
   validateForm(event);
 });
-
-addBookToLibrary('penguins', 'mr polar bear', '980', true);
-addBookToLibrary('donuts', 'the police man', '2', false);
