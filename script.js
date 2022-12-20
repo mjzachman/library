@@ -1,16 +1,18 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read; // Boolean
-  this.info = function info() {
-    return `${title} by ${author}, ${pages} pages long. (${read})`;
-  };
-  this.toggle = function toggle() {
-    this.read = !this.read;
-  };
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read; // Boolean
+    this.info = function info() {
+      return `${title} by ${author}, ${pages} pages long. (${read})`;
+    };
+    this.toggle = function toggle() {
+      this.read = !this.read;
+    };
+  }
 }
 
 function addBookToLibrary(title, author, pages, read) {
